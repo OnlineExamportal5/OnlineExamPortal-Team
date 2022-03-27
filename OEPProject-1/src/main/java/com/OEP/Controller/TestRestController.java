@@ -69,4 +69,5 @@ public class TestRestController {
 
 		return new ResponseEntity<String>("record deleted successfully", HttpStatus.OK);
 	}
+	
 }

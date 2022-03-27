@@ -41,4 +41,13 @@ public class UserService {
 		return repo.findByEmailId(emailId);
 	}
 
+	public List<Users> getAllUsers() {
+	
+		return repo.getAllUsers();
+	}
+
+	public void deleteAll() {
+		repo.deleteAll();
+	}
+
 }
