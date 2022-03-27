@@ -2,33 +2,46 @@ package com.OEP.Model;
 
 import java.io.Serializable;
 
-	import javax.persistence.CascadeType;
-	import javax.persistence.Entity;
-	import javax.persistence.FetchType;
-	import javax.persistence.GeneratedValue;
-	import javax.persistence.GenerationType;
-	import javax.persistence.Id;
-	import javax.persistence.JoinColumn;
-	import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-	import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 	@Entity
 	public class Address implements Serializable {
 
 		private static final long serialVersionUID = 1L;
-
-		@Id
-		@GeneratedValue(strategy = GenerationType.AUTO)
-		private int addressId;
-		private String city;
-		private int zipCode;
-		private String country;
-
+		
+		    @Id
+		    @GeneratedValue(strategy = GenerationType.AUTO)
+		    private int addressId;
+		    @NotNull(message = "street name should not be empty")
+		    private String street;
+		    @Column(name = "city", nullable = false)
+		    @NotEmpty
+		    private String city;
+		    @Column(name = "state", nullable = false)
+		    @NotEmpty
+		    private String state;
+		    @Column(name = "zipCode", nullable = false)
+		    @NotEmpty
+		    private int zipCode;
+			private String country;
+	
 		@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 		@JoinColumn(name = "userId")
 		@JsonBackReference
 		private Users users;
+
 
 		public Address(int addressId, String city, int zipCode, String country) {
 			super();
@@ -37,6 +50,15 @@ import java.io.Serializable;
 			this.zipCode = zipCode;
 			this.country = country;
 		}
+		
+		 public Address(int addressId,String street, String city, String state, int zipCode) {
+		        super();
+		        this.addressId=addressId;
+		        this.street = street;
+		        this.city = city;
+		        this.state = state;
+		        this.zipCode = zipCode;
+		 }
 
 		public Address() {
 			super();
@@ -89,4 +111,7 @@ import java.io.Serializable;
 		}
 
 	}
+	
+	   
+	
 

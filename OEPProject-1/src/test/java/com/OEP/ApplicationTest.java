@@ -16,7 +16,6 @@ import com.OEP.Model.Users;
 import com.OEP.Repository.UserRepo;
 import com.OEP.Service.UserService;
 
-//@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ApplicationTest {
 	@MockBean
