@@ -11,4 +11,6 @@ import com.OEP.Model.Users;
 public interface UserRepo extends JpaRepository<Users, Integer> {
 
 	List<Users> findTestByUserIdAndPassword(int userId, String password);
+
+	void deleteByname(String name);
 }
