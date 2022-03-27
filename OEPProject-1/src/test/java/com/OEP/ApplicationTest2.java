@@ -37,4 +37,5 @@ public class ApplicationTest2 {
 		when(repo.findByNameAndPassword(name, password)).thenReturn(insert);
 		assertEquals(insert, service.login(name, password));
 	}
+
 }
