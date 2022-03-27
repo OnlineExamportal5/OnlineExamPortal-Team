@@ -33,8 +33,6 @@ public class Tests {
 		super();
 		this.testId = testId;
 		this.courseType = courseType;
-		// this.users = users;
-		// this.result = result;
 	}
 
 	public Tests() {

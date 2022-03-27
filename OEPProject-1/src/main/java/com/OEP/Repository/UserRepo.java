@@ -19,4 +19,7 @@ public interface UserRepo extends JpaRepository<Users, Integer> {
 
 	Optional<Users> findByEmailId(String emailId);
 
+	List<Users> getAllUsers();
+	
+
 }
