@@ -1,6 +1,7 @@
 package com.OEP.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -24,6 +25,20 @@ public class UserService {
 
 	public List<Users> findTestByUserIdAndPassword(int userId, String password) {
 		return repo.findTestByUserIdAndPassword(userId, password);
+	}
+
+	public Users userlogin(String name, String password) {
+		Users user = repo.findByNameAndPassword(name, password);
+
+		return user;
+	}
+
+	public void updateUserByEmailId(Users u) {
+		repo.save(u);
+	}
+
+	public Optional<Users> findByEmailId(String emailId) {
+		return repo.findByEmailId(emailId);
 	}
 
 }
