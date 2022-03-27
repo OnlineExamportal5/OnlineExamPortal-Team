@@ -44,6 +44,17 @@ package com.OEP.Model;
 			this.password = password;
 			this.userAddress = userAddress;
 		}
+		
+		public Users(String userName,String userEmail, int mobileNo, String password, Address userAddress) {
+
+			super();
+
+			this.userName = userName;
+			this.userEmail = userEmail;
+			this.mobileNo = mobileNo;
+			this.password = password;
+			this.userAddress = userAddress;
+			}
 
 		public Users(int userId, String password) {
 			super();

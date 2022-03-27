@@ -1,6 +1,8 @@
 package com.OEP.Controller;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +47,35 @@ public class UserRestController {
 		}
 
 		return new ResponseEntity<List<Users>>(users, HttpStatus.OK);
+	}
+
+	@GetMapping("/UserLogin")
+	public ResponseEntity<String> checkUser(@RequestBody Users u) {
+		String status = null;
+		Users user = service.userlogin(u.getUserName(), u.getPassword());
+		if (Objects.nonNull(user)) {
+			status = "welcome to the portal";
+		} else {
+			throw new ResourceNotFoundException("Invaild Credentials");
+		}
+		return new ResponseEntity<String>(status, HttpStatus.OK);
+
+	}
+
+	@PutMapping("/forgotPassword")
+	public ResponseEntity<String> updateUserByEmailId(@RequestBody Users u) {
+		String status = null;
+		Optional<Users> obj = service.findByEmailId(u.getUserEmail());
+
+		if (obj.isPresent()) {
+			obj.get().setPassword(u.getPassword());
+			service.updateUserByEmailId(obj.get());
+			status = "Password Changed Successfully";
+		} else {
+			throw new ResourceNotFoundException("Provide Valid EmailId");
+
+		}
+		return new ResponseEntity<String>(status, HttpStatus.OK);
 	}
 
 }

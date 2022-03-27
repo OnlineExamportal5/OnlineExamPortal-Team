@@ -51,7 +51,17 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 			this.country = country;
 		}
 		
-		 public Address(int addressId,String street, String city, String state, int zipCode) {
+		
+		 public Address(String city,  String state,String country, int zipCode) {
+			super();
+			this.city = city;
+			this.state = state;
+			this.zipCode = zipCode;
+			this.country = country;
+		}
+
+
+		public Address(int addressId,String street, String city, String state, int zipCode) {
 		        super();
 		        this.addressId=addressId;
 		        this.street = street;

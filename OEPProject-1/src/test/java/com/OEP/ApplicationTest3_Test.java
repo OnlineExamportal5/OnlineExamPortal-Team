@@ -24,4 +24,6 @@ public class ApplicationTest3_Test {
 		when(repository.save(test)).thenReturn(test);
 		assertEquals(test, service.addTestDetails(test));
 	}
+	
 }
+

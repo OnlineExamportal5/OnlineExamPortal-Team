@@ -40,5 +40,19 @@ public class ApplicationTest {
 		when(repo.save(user)).thenReturn(user);
 		assertEquals(user, service.addUsersDetails(user));
 	}
+	
+	@Test
+
+	public void getUserTest() {
+	String name = "java";
+	String password = "java009";
+	Address address = new Address("HYD","TS","IND",001122);
+	
+	Users insert = new Users("ram","ram@gmail.com",1212345678,"ram009",address);
+	when(repo.findByNameAndPassword(name,password)).thenReturn(insert);
+	assertEquals(insert, service.userlogin(name,password));
+
+
+	}
 
 }
